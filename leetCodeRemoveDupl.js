@@ -1,10 +1,17 @@
 var removeDuplicates = function(nums) {
-    let i = 0;
-    for (let j = 0; j < nums.length; j++) {
-        if (nums[j] != nums[i]) 
-            nums[i++] = nums[j];
+    let k=nums.length;
+    let currChar
+    for (let i=0; i<nums.length; i++) {
+        currChar = nums[i];
+        if (currChar === "_") {
+            return k;
+        }
+        while (nums[i] === nums[i+1]) {
+            k--;
+            nums.splice(i+1, 1);
+            nums.splice(nums.length, 0, '_');
+        }
     }
-    return i++;
 };
 
 console.log(removeDuplicates([1,1,2])) //2, nums = [1,2,_]
